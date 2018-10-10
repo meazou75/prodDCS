@@ -13,7 +13,7 @@ function submit(props) {
             {
                 label: 'Yes',
                 onClick: () => {
-                    fetch(`http://localhost:3333/api/task/${props._id}`, {
+                    fetch(`http://159.89.205.75:3333/api/task/${props._id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())

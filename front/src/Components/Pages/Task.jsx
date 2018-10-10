@@ -13,7 +13,7 @@ function submit(props) {
             {
                 label: 'Yes',
                 onClick: () => {
-                    fetch(`http://localhost:3333/api/task/${props._id}`, {
+                    fetch(`http://159.89.205.75:3333/api/task/${props._id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
@@ -83,7 +83,7 @@ class AddTaskModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch('http://localhost:3333/api/task/', {
+        fetch('http://159.89.205.75:3333/api/task/', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -167,7 +167,7 @@ class UpdateTaskModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch(`http://localhost:3333/api/task/${this.props.task._id}`, {
+        fetch(`http://159.89.205.75:3333/api/task/${this.props.task._id}`, {
             method: 'PUT',
             body: JSON.stringify(this.state),
             headers: {
@@ -253,7 +253,7 @@ class Task extends React.Component {
     }
 
     getData() {
-        fetch('http://localhost:3333/api/task')
+        fetch('http://159.89.205.75:3333/api/task')
             .then(res => res.json())
             .then(res => {
                 if (res.success === true) {

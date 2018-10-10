@@ -28,7 +28,7 @@ class AddUserModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch('http://localhost:3333/api/task/', {
+        fetch('http://159.89.205.75:3333/api/task/', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -111,7 +111,7 @@ class EngineerList extends React.Component {
     }
 
     getData() {
-        fetch('http://localhost:3333/api/user')
+        fetch('http://159.89.205.75:3333/api/user')
             .then(res => res.json())
             .then(res => {
                 if (res.success === true) {
