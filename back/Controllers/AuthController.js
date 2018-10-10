@@ -48,6 +48,7 @@ router.post('/register', function(req, res) {
             password: hashedPassword,
             role: req.body.role,
             company: req.body.company,
+            activation: true,
             position: req.body.position,
             keys: {
                 public_key: keys.public_key,
