@@ -1,0 +1,130 @@
+.container-select-option {
+    width: 80%;
+    height: 100px;
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 25px;
+    position: relative;
+}
+
+.input-engineerList-option {
+    border: 1px solid #bed630;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.select-engineerList-option {
+    padding: 10px;
+    margin: auto 0 auto 0;
+    border-radius: 10px;
+    border: 1px solid #bed630;
+    margin-right: 25px;
+}
+
+.engineer-position {
+    position: absolute;
+    right: 0;
+    margin-right: 150px;
+}
+
+.role {
+    position: absolute;
+    right: 0;
+}
+
+.container-engineer-list {
+    width: 80%;
+    margin: 50px auto;
+    height: 600px;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.engineer-row {
+    background-color: #f0f0f0;
+    padding: 15px;
+    font-size: 15px;
+    display: flex;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.engineer-row:hover {
+    background-color: #bed630;
+    color: #f0f0f0;
+    font-size: 17px;
+}
+
+.engineer-row-name {
+    width: 25%;
+}
+
+.engineer-row-occupation {
+    width: 30%;
+}
+.engineer-row-email {
+    width: 30%;
+}
+
+.engineer-row-status {
+    width: 10%;
+}
+
+.icon_engineerList {
+    padding-right: 7px;
+}
+
+.modification_icon {
+    padding: 5px;
+}
+
+.icon_search_engineerList {
+    font-size: 25px;
+    padding-left: 5px;
+}
+
+@media screen and (max-width: 991px) {
+    .container-select-option {
+        width: 95%;
+        height: 200px;
+    }
+
+    .container-engineer-list {
+        width: 95%;
+    }
+
+    .input-engineerList-option {
+        margin-bottom: 15px;
+    }
+
+    .select-engineerList-option {
+        margin-bottom: 15px;
+    }
+
+    .engineer-row {
+        background-color: #f0f0f0;
+        padding: 15px;
+        font-size: 15px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .engineer-row-name,
+    .engineer-row-email {
+        width: auto;
+    }
+    .engineer-row-occupation,
+    .engineer-row-status {
+        width: auto;
+    }
+
+    .fa-user-circle,
+    .fa-at {
+        padding-right: 5px;
+    }
+
+    .modification_icon {
+        padding: 0;
+    }
+}

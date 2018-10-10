@@ -1,0 +1,50 @@
+.profil-container {
+
+}
+
+.sidebar {
+    background-color: #bed62f;
+    color: white;
+    height: calc(100vh - 85px);
+    padding: 0px;
+}
+
+.sidebar h3 {
+    text-align: center;
+    color: white;
+    padding: 22px 0px;
+    margin: 0;
+}
+
+.sidebar a {
+    display: block;
+    background-color: #72bbe5;
+}
+
+.sidebar a button{
+    outline: none;
+    border: none;
+    background-color: #72bbe5;
+    width: 100%;
+    padding: 22px 0px;
+    color: white;
+    transition: all 700ms;
+}
+
+.sidebar a button.activate{
+    margin-left: 30px;
+    -webkit-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: -10px 0px 19px -5px rgba(0, 0, 0, 0.75);
+}
+
+.sidebar a button:hover{
+    margin-left: 30px;
+    -webkit-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: -10px 0px 19px -5px rgba(0, 0, 0, 0.75);
+}
+
+.content {
+
+}

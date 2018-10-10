@@ -1,0 +1,163 @@
+* {
+    transition: all 0.15s ease-in;
+}
+
+.table-responsive-container {
+    width: 75%;
+    margin: 45px auto 0px auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: left;
+}
+
+.fa-cogs {
+    margin-right: 5px;
+    color: #bed630;
+}
+
+.fa-minus-circle {
+    margin-left: 5px;
+    color: red;
+}
+
+.btn-success,
+.btn-success:visited {
+    background-color: #bed630;
+    border: solid 1px #bed630;
+}
+
+.btn-danger {
+    margin-right: 5px;
+}
+
+.task-caption {
+    font-size: 3rem;
+    width: 50%;
+    margin: auto auto 30px auto;
+    padding: 25px;
+    color: #bed630;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.col-id {
+    max-width: 10%;
+}
+.col-name {
+    min-width: 25%;
+}
+
+.col-task_detail {
+    width: 50%;
+}
+
+.col-actions {
+    min-width: 15%;
+}
+
+.modal-container {
+    border-radius: 30px;
+}
+
+.modal-header {
+    margin: auto;
+    background-color: #f0f0f0;
+    text-align: center;
+    color: black;
+}
+
+.modal-title {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #bed630;
+    border-radius: 10px;
+}
+
+textarea.modal-input {
+    margin: 50px 0px 50px 0px;
+    height: 200px;
+}
+
+.modal-button-submit {
+    width: 75%;
+    margin: auto;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #bed630;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.modal-button-submit:hover {
+    color: #fff;
+    background-color: #bed630;
+    opacity: 0.6;
+    border: 1px solid #bed630;
+    border-radius: 10px;
+}
+
+.col-actions {
+    text-align: center;
+}
+
+.icon_edit {
+    color: #bed630;
+    padding-right: 5px;
+}
+
+.icon_delete_task {
+    color: red;
+    padding-left: 5px;
+}
+
+.icon_task {
+    padding-right: 15px;
+}
+
+.icone_link:hover {
+    text-decoration: none;
+    border: none !important;
+}
+
+@media screen and (max-width: 991px) {
+    td,
+    th {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .task-caption {
+        font-size: 14px;
+        text-align: center;
+        padding: 15px;
+        color: #bed630;
+    }
+
+    .fas.icon {
+        padding-right: 5px;
+    }
+
+    .modal-input {
+        font-size: 15px;
+    }
+
+    .modal-container {
+        margin: auto;
+    }
+}

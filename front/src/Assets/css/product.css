@@ -1,0 +1,282 @@
+* {
+    transition: all 0.15s ease-in;
+}
+
+.mainProduct-container {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.brand-container {
+    background-color: #fff;
+    height: 500px;
+    position: relative;
+    padding: 0;
+    padding-right: 10px;
+}
+
+.product-container {
+    background-color: #f0f0f0;
+    height: 500px;
+    padding: 0;
+}
+
+.brand-add-button {
+    position: absolute;
+    bottom: 0;
+    background-color: #bed62f;
+    border: solid 1px #bed62f;
+    width: calc(100% - 10px);
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.brand-add-button:hover {
+    opacity: 0.7;
+}
+
+.product-brand {
+    background-color: #f0f0f0;
+    border: solid 1px #f0f0f0;
+    width: 100%;
+    color: #000;
+    padding: 16px;
+    font-size: 15px;
+}
+
+.product-brand.active {
+    background-color: #bed62f;
+    color: #fff;
+}
+
+.product-header {
+    background-color: #72bbe5;
+    color: #fff;
+    width: 100%;
+    padding: 13px;
+    font-size: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.product-header input {
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 0px 5px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.product-header button {
+    margin-left: 4px;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    padding: 3px 5px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.product-detail {
+    width: 100%;
+    color: #000;
+    padding: 15px;
+    font-size: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.model-add-button {
+    position: absolute;
+    bottom: 0;
+    border: none;
+    background-color: #72bbe5;
+    width: 100%;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.product-header .icon_edit {
+    color: #fff;
+    margin-top: 4px;
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.product-header .icon_delete {
+    color: #fff;
+    margin-top: 4px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.product-detail .icon_edit {
+    color: #000;
+    margin-top: 4px;
+    float: right;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.product-detail .icon_delete {
+    color: #000;
+    margin-top: 4px;
+    margin-right: 5px;
+    float: right;
+    cursor: pointer;
+}
+
+.product-brand:hover {
+    background-color: #bed62f;
+    color: #fff;
+}
+
+.product-brand:hover + .product-brand {
+    transition: all 0.5s ease-in;
+}
+
+.product-brand:hover .fa-circle {
+    color: #fff;
+}
+
+.product-brand.active .fa-circle {
+    color: #fff;
+}
+
+.fa-chevron-right {
+    float: right;
+}
+
+.fa-circle {
+    color: #bed62f;
+    font-size: 10px;
+}
+
+.modal-container {
+    border-radius: 30px;
+}
+
+.modal-header {
+    margin: auto;
+    background-color: #f0f0f0;
+    text-align: center;
+    color: black;
+}
+
+.modal-title {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+.modal-input {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #bed630;
+    border-radius: 10px;
+}
+
+.modal-button-submit {
+    width: 75%;
+    margin: auto;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #bed630;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.modal-button-submit:hover {
+    color: #fff;
+    background-color: #bed630;
+    opacity: 0.6;
+    border: 1px solid #bed630;
+    border-radius: 10px;
+}
+
+.textInput {
+    cursor: auto;
+}
+
+.textInput input{
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 5px 5px;
+}
+
+.textInput button{
+    background-color: #28cdbf;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.textInput button i {
+    margin: 0;
+    padding-right: 0;
+    color: #fff;
+}
+.products-render {
+    height: 420px;
+    overflow-y: scroll;
+}
+
+.show-button {
+    outline: none;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 4px 15px;
+    margin: 0px auto;
+}
+
+.button-container {
+    margin-top: -15px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 770px) {
+    .brand-container {
+        padding: 0;
+        margin-bottom: 40px;
+        height: 250px;
+    }
+
+    .brand-container.expanded {
+        height: 450px;
+    }
+
+    .products-render {
+        height: 160px;
+    }
+
+    .products-render.expanded {
+        height: 360px;
+    }
+
+    .brand-add-button {
+        width: 100%;
+    }
+}

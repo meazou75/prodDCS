@@ -1,0 +1,11 @@
+.nav-container
+{
+    background-color : #bed630;
+    border-bottom: solid 5px #72bbe5;
+    height: 10vh;
+}
+
+.nav-content
+{
+    color : #f7941d;
+}

@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 90;
+    background: #f0f0f0;
+    background-color: #f0f0f0;
+    font-family: 'Quicksand';
+}
+
+.nopad {
+    padding: 0!important;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #bed62f;
+    border-color: #bed62f;
+}
+
+.panel-primary {
+    border-color: #bed62f;
+}
+
+.panel-primary > .panel-heading {
+    background-color: #bed62f;
+    border-color: #bed62f;
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    transition: 0.7s;
+}
+
+.btn-primary.focus,
+.btn-primary:hover {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    transition: 0.7s;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.react-confirm-alert-body
+{
+    text-align: center;
+}
+
+.react-confirm-alert-button-group button
+{
+    padding : 10px;
+    width: 30%;
+    margin: auto;
+}
+
+.react-confirm-alert-button-group button:nth-child(1)
+{
+    background-color:#bed62f;
+}
+
+.react-confirm-alert-button-group button:nth-child(2)
+{
+    background-color:#c9302c;
+}

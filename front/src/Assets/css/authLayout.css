@@ -1,0 +1,109 @@
+.auth-header {
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 6px 0px;
+}
+
+.auth-header img {
+    height: 70px;
+}
+
+.login-page {
+    width: 100%;
+    padding: 6% 0 0;
+    margin: auto;
+}
+.auth-container {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    max-width: 50%;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.auth-container h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    margin: 0;
+}
+
+.auth-container input {
+    font-family: 'Roboto', sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.auth-container select {
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 15px;
+    color: #818181;
+}
+
+.auth-container button {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #bed62f;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.auth-container button:hover,
+.auth-container button:active,
+.auth-container button:focus {
+    background: #a9b859;
+}
+
+.auth-container .type-button {
+    display: block;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.auth-container .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.auth-container .message a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.auth-container .successfully-register img {
+    height: 160px;
+}
+
+.auth-container .successfully-register h2 {
+    font-size: 26px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.auth-container .successfully-register p {
+    padding-bottom: 15px;
+}

@@ -1,0 +1,63 @@
+/* Notification */
+
+.DCS_notification {
+    font-family: 'Roboto';
+    padding: 11px;
+    border: 1px solid transparent;
+    padding-right: 115px;
+    padding-left: 10%;
+    background-color: #f5a623;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: 0.1px;
+    color: #ffffff;
+}
+
+.DCS_notification button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+}
+
+.DCS_notification .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.notifTopMost {
+    z-index: 999999;
+    position: fixed;
+    width: 100%;
+}
+
+.notifFadeIn,
+.notifFadeOut {
+    opacity: 0;
+    -moz-transition: opacity 0.4s, margin-top 0.2s ease-in-out;
+    -o-transition: opacity 0.4s, margin-top 0.2s ease-in-out;
+    -webkit-transition: opacity 0.4s, margin-top 0.2s ease-in-out;
+    transition: opacity 0.4s, margin-top 0.2s ease-in-out;
+    margin-top: -44px;
+}
+
+.notifFadeIn {
+    opacity: 1;
+    margin-top: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .DCS_notification {
+        padding-right: 35px;
+        padding-left: 25px;
+        text-align: left;
+    }
+}

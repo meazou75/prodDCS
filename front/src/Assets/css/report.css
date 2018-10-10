@@ -1,0 +1,160 @@
+.report-container {
+    background-color: white;
+    width: 70%;
+    margin: 45px auto 55px auto;
+    padding: 50px;
+    -webkit-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
+    border-radius: 3px;
+}
+
+.report-container .report-footer {
+    height: 34px;
+}
+
+.report-container p {
+    padding-top: 5px;
+}
+
+.report-container .required-text {
+    font-weight: 500;
+    color: #d9534f;
+}
+
+.report-container h2 {
+    padding-bottom: 12px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.toggle-radio {
+    position: relative;
+    height: 56px;
+}
+
+.report-container .form-group {
+    margin-bottom: 20px;
+}
+
+.report-container .successfully-report {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+/* Switch Design by theawesomecoder61 */
+
+.switch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    margin: -30px 0 0 -75px;
+    background: #bed62f;
+    transition: all 0.2s ease;
+    border-radius: 25px;
+}
+.switch span {
+    position: absolute;
+    width: 20px;
+    height: 4px;
+    top: 50%;
+    left: 50%;
+    margin: -2px 0px 0px -4px;
+    background: #fff;
+    display: block;
+    transform: rotate(-45deg);
+    transition: all 0.2s ease;
+}
+.switch span:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 4px;
+    height: 12px;
+    margin-top: -8px;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+input[type='radio'] {
+    display: none;
+}
+.switch label {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.2);
+    width: 60px;
+    line-height: 50px;
+    transition: all 0.2s ease;
+}
+label[for='yes'] {
+    position: absolute;
+    left: 0px;
+    height: 20px;
+}
+label[for='no'] {
+    position: absolute;
+    right: 0px;
+}
+label[for='yes1'] {
+    position: absolute;
+    left: 0px;
+    height: 20px;
+}
+label[for='no1'] {
+    position: absolute;
+    right: 0px;
+}
+#no:checked ~ .switch {
+    background: #d9534f;
+}
+#no:checked ~ .switch span {
+    background: #fff;
+    margin-left: -8px;
+}
+#no:checked ~ .switch span:after {
+    background: #fff;
+    height: 20px;
+    margin-top: -8px;
+    margin-left: 8px;
+}
+#no1:checked ~ .switch {
+    background: #d9534f;
+}
+#no1:checked ~ .switch span {
+    background: #fff;
+    margin-left: -8px;
+}
+#no1:checked ~ .switch span:after {
+    background: #fff;
+    height: 20px;
+    margin-top: -8px;
+    margin-left: 8px;
+}
+#yes:checked ~ .switch label[for='yes'] {
+    color: #fff;
+}
+#no:checked ~ .switch label[for='no'] {
+    color: #fff;
+}
+#yes1:checked ~ .switch label[for='yes1'] {
+    color: #fff;
+}
+#no1:checked ~ .switch label[for='no1'] {
+    color: #fff;
+}
+
+@media screen and (max-width: 991px) {
+    .report-container {
+        margin: 0px;
+        width: 100%;
+        padding: 20px 15px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    .report-container p {
+        padding-bottom: 10px;
+    }
+}

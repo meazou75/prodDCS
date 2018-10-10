@@ -1,0 +1,114 @@
+.main-container {
+    display: flex;
+    width: 80%;
+    background-color: white;
+    margin: 50px auto 50px auto;
+}
+
+.container-customer {
+    margin: 50px auto 50px auto;
+    padding: 0;
+}
+
+.pending-container {
+    width: 45%;
+    background-color: #fff;
+    height: 500px;
+    position: relative;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.user-container {
+    position: relative;
+    width: 45%;
+    background-color: #f0f0f0;
+}
+
+.pending-container-header {
+    background-color: #bed62f;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.processed-container-header {
+    background-color: #72bbe5;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.pending-report,
+.approved-report,
+.rejected-report {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #fff;
+    text-align: left;
+}
+
+.approved-report .fa-file-alt {
+    color: green;
+}
+
+.rejected-report .fa-file-alt {
+    color: red;
+}
+
+.pending-report:hover,
+.approved-report:hover {
+    background-color: #bed62f;
+    color: #fff;
+}
+
+.rejected-report:hover {
+    background-color: #c9302c;
+    color: #fff;
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    padding-left: 5px;
+}
+
+.fa-file-alt {
+    padding-right: 10px;
+}
+
+.user-container .fa-envelope,
+.user-container .fa-edit,
+.pending-container .fa-check {
+    padding-right: 20px !important;
+    padding-top: 2px;
+}
+
+.user-container .fa-times-circle,
+.user-container .fa-print,
+.pending-container .fa-times {
+    padding-right: 50px !important;
+    padding-top: 2px;
+}
+
+.icon_check {
+    color: green;
+}
+
+.icon_edit_customer {
+    color: #000;
+}
+
+.fa-times {
+    color: red;
+}
+
+.icon_delete {
+    color: black;
+}
