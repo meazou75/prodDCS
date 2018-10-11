@@ -23,7 +23,7 @@ class Product extends React.Component {
     }
 
     getData() {
-        this.setState({loading: true})
+        this.setState({ loading: true });
         fetch('http://159.89.205.75:3333/api/product')
             .then(res => res.json())
             .then(res => {
@@ -92,6 +92,28 @@ class Product extends React.Component {
 
         return (
             <div>
+                {(() => {
+                    if (this.state.products.length > 0) {
+                        return (
+                            <AddModelModal
+                                _id={
+                                    this.state.products[
+                                        this.state.activeProduct
+                                    ]._id
+                                }
+                                show={this.state.modalState2}
+                                handleHide={() => {
+                                    this.setState({ modalState2: false });
+                                }}
+                                onSuccess={product => {
+                                    let old = [...this.state.products];
+                                    old[this.state.activeProduct] = product;
+                                    this.setState({ products: old });
+                                }}
+                            />
+                        );
+                    }
+                })()}
                 <AddBrandModal
                     show={this.state.modalState}
                     handleHide={() => {
@@ -103,18 +125,7 @@ class Product extends React.Component {
                         })
                     }
                 />
-                <AddModelModal
-                    _id={this.state.products[this.state.activeProduct]._id}
-                    show={this.state.modalState2}
-                    handleHide={() => {
-                        this.setState({ modalState2: false });
-                    }}
-                    onSuccess={product => {
-                        let old = [...this.state.products];
-                        old[this.state.activeProduct] = product;
-                        this.setState({ products: old });
-                    }}
-                />
+
                 <div className="container nopad" style={{ marginTop: '30px' }}>
                     <div className="row mainProduct-container">
                         <div
@@ -162,10 +173,10 @@ class Product extends React.Component {
                                     this.state.activeProduct
                                 ]}
                                 onDelete={() => {
-                                    this.getData()
+                                    this.getData();
                                 }}
                                 onModify={() => {
-                                    this.getData()
+                                    this.getData();
                                 }}
                             />
                             <div
