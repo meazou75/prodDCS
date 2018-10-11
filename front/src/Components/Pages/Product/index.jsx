@@ -182,7 +182,7 @@ class Product extends React.Component {
                             <div
                                 style={{ height: '390px', overflowY: 'scroll' }}
                             >
-                                {renderProductsModelName()}
+                                {this.state.products.length > 0 ? renderProductsModelName() : null}
                             </div>
                             <button
                                 className="model-add-button"
