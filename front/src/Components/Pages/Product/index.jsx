@@ -167,33 +167,44 @@ class Product extends React.Component {
                                 Add a Brand
                             </button>
                         </div>
-                        <div className="col-md-6 col-sm-6 col-xs-12 product-container">
-                            <ProductModelHeader
-                                {...this.state.products[
-                                    this.state.activeProduct
-                                ]}
-                                onDelete={() => {
-                                    this.getData();
-                                }}
-                                onModify={() => {
-                                    this.getData();
-                                }}
-                            />
-                            <div
-                                style={{ height: '390px', overflowY: 'scroll' }}
-                            >
-                                {this.state.products.length > 0 ? renderProductsModelName() : null}
-                            </div>
-                            <button
-                                className="model-add-button"
-                                type="button"
-                                onClick={() => {
-                                    this.setState({ modalState2: true });
-                                }}
-                            >
-                                Add a Model
-                            </button>
-                        </div>
+                        {(() => {
+                            if (this.state.products.length > 0) {
+                                return (
+                                    <div className="col-md-6 col-sm-6 col-xs-12 product-container">
+                                        <ProductModelHeader
+                                            {...this.state.products[
+                                                this.state.activeProduct
+                                            ]}
+                                            onDelete={() => {
+                                                this.getData();
+                                            }}
+                                            onModify={() => {
+                                                this.getData();
+                                            }}
+                                        />
+                                        <div
+                                            style={{
+                                                height: '390px',
+                                                overflowY: 'scroll'
+                                            }}
+                                        >
+                                            {renderProductsModelName()}
+                                        </div>
+                                        <button
+                                            className="model-add-button"
+                                            type="button"
+                                            onClick={() => {
+                                                this.setState({
+                                                    modalState2: true
+                                                });
+                                            }}
+                                        >
+                                            Add a Model
+                                        </button>
+                                    </div>
+                                );
+                            }
+                        })()}
                     </div>
                 </div>
             </div>
