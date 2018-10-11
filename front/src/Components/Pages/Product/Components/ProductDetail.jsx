@@ -23,7 +23,7 @@ class ProductDetail extends React.Component {
                     label: 'Yes',
                     onClick: () => {
                         fetch(
-                            `http://localhost:3333/api/product/model/${
+                            `http://159.89.205.75:3333/api/product/model/${
                                 this.props._id
                             }`,
                             {

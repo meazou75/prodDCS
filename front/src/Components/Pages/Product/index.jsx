@@ -24,7 +24,7 @@ class Product extends React.Component {
 
     getData() {
         this.setState({loading: true})
-        fetch('http://localhost:3333/api/product')
+        fetch('http://159.89.205.75:3333/api/product')
             .then(res => res.json())
             .then(res => {
                 if (res.success === true) {

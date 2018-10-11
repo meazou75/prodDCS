@@ -23,7 +23,7 @@ class AddModelModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch('http://localhost:3333/api/product/model', {
+        fetch('http://159.89.205.75:3333/api/product/model', {
             method: 'POST',
             body: JSON.stringify({
                 _id: this.props._id,

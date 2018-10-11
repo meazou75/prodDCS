@@ -38,7 +38,7 @@ class ProductModelHeader extends React.Component {
                     label: 'Yes',
                     onClick: () => {
                         fetch(
-                            `http://localhost:3333/api/product/brand/${
+                            `http://159.89.205.75:3333/api/product/brand/${
                                 this.props._id
                             }`,
                             {
@@ -67,7 +67,7 @@ class ProductModelHeader extends React.Component {
     }
 
     handleSubmit() {
-        fetch(`http://localhost:3333/api/product/brand/${this.props._id}`, {
+        fetch(`http://159.89.205.75:3333/api/product/brand/${this.props._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 productBrand: this.state.productBrand

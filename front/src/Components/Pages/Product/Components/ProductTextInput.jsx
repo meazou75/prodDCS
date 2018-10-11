@@ -19,7 +19,7 @@ class ProductTextInput extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
     handleSubmit() {
-        fetch('http://localhost:3333/api/product/model', {
+        fetch('http://159.89.205.75:3333/api/product/model', {
             method: 'PUT',
             body: JSON.stringify({
                 _id: this.props.idProduct,

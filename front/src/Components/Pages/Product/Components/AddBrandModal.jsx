@@ -23,7 +23,7 @@ class AddBrandModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch('http://localhost:3333/api/product/brand', {
+        fetch('http://159.89.205.75:3333/api/product/brand', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
