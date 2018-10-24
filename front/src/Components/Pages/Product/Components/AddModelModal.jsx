@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Modal } from 'react-bootstrap';
 
+import {endpoint} from '../../../../Constants';
+
 class AddModelModal extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +25,7 @@ class AddModelModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch('http://159.89.205.75:3333/api/product/model', {
+        fetch(`${endpoint}/product/model`, {
             method: 'POST',
             body: JSON.stringify({
                 _id: this.props._id,

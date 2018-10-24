@@ -1,38 +1,11 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import '../../Assets/css/customer.css';
 
-function submit(props) {
-    confirmAlert({
-        title: 'Delete Confirmation',
-        message: 'Are you sure you want to delete it ?',
-        buttons: [
-            {
-                label: 'Yes',
-                onClick: () => {
-                    fetch(`http://159.89.205.75:3333/api/task/${props._id}`, {
-                        method: 'DELETE'
-                    })
-                        .then(res => res.json())
-                        .then(res => {
-                            if (res.success === true) {
-                                props.onDelete();
-                            }
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        });
-                }
-            },
-            {
-                label: 'No'
-            }
-        ]
-    });
-}
+import { Col, Row } from 'react-bootstrap';
+
+import { NavLink } from 'react-router-dom';
+
 
 function pendingReport(props) {
     return (
@@ -85,26 +58,46 @@ class Customer extends React.Component {
 
     render() {
         return (
-            <div className="main-container">
-                <div className="container-customer pending-container">
-                    <div className="pending-container-header">
-                        Waiting Reports
+            <Row className="profil-container">
+                <Col md={2} className="sidebar">
+                    <h3>My Profil</h3>
+                    <NavLink to="/profile/report" activeClassName="active">
+                        <button>Report List</button>
+                    </NavLink>
+                    <NavLink to="/profile" activeClassName="active">
+                        <button>Personal Information</button>
+                    </NavLink>
+                    <NavLink to="/profile/security" activeClassName="active">
+                        <button>Security</button>
+                    </NavLink>
+                </Col>
+                <Col md={10} className="content">
+                    <div className="main-container">
+                        <div className="container-customer pending-container">
+                            <div className="pending-container-header">
+                                Waiting Reports
+                            </div>
+                            {pendingReport(
+                                'Report - 19/09/2018 - François DELVILLE'
+                            )}
+                            {pendingReport(
+                                'Report - 22/09/2018 - François DELVILLE'
+                            )}
+                        </div>
+                        <div className="container-customer user-container">
+                            <div className="processed-container-header">
+                                Processed Reports
+                            </div>
+                            {approvedReport(
+                                'Report - 22/09/2018 - François DELVILLE - Status : Approved'
+                            )}
+                            {rejectedReport(
+                                'Report - 19/09/2018 - François DELVILLE - Status : Rejected'
+                            )}
+                        </div>
                     </div>
-                    {pendingReport('Report - 19/09/2018 - François DELVILLE')}
-                    {pendingReport('Report - 22/09/2018 - François DELVILLE')}
-                </div>
-                <div className="container-customer user-container">
-                    <div className="processed-container-header">
-                        Processed Reports
-                    </div>
-                    {approvedReport(
-                        'Report - 22/09/2018 - François DELVILLE - Status : Approved'
-                    )}
-                    {rejectedReport(
-                        'Report - 19/09/2018 - François DELVILLE - Status : Rejected'
-                    )}
-                </div>
-            </div>
+                </Col>
+            </Row>
         );
     }
 }

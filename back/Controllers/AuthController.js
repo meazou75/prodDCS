@@ -48,7 +48,6 @@ router.post('/register', function(req, res) {
             password: hashedPassword,
             role: req.body.role,
             company: req.body.company,
-            activation: true,
             position: req.body.position,
             keys: {
                 public_key: keys.public_key,
@@ -77,7 +76,7 @@ router.post('/register', function(req, res) {
     );
 });
 
-router.get('/me', VerifyToken, Permit(0), function(req, res, next) {
+router.get('/me', VerifyToken, Permit(0,1), function(req, res, next) {
     User.findById(req.user._id, { password: 0, keys: 0 }, function(err, user) {
         if (err)
             return res
@@ -85,7 +84,7 @@ router.get('/me', VerifyToken, Permit(0), function(req, res, next) {
                 .send('There was a problem finding the user.');
         if (!user) return res.status(404).send('No user found.');
 
-        res.status(200).send(user);
+        res.status(200).send({success: true, user : user});
     });
 });
 // add the middleware function

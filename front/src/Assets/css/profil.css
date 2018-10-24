@@ -1,7 +1,3 @@
-.profil-container {
-
-}
-
 .sidebar {
     background-color: #bed62f;
     color: white;
@@ -18,33 +14,170 @@
 
 .sidebar a {
     display: block;
-    background-color: #72bbe5;
+    background-color: #f0f0f0;
 }
 
-.sidebar a button{
+.sidebar a button {
     outline: none;
-    border: none;
-    background-color: #72bbe5;
+    border-bottom: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    background-color: #fff;
     width: 100%;
     padding: 22px 0px;
-    color: white;
+    color: black;
     transition: all 700ms;
 }
 
-.sidebar a button.activate{
+.sidebar a button.activate {
     margin-left: 30px;
     -webkit-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
     box-shadow: -10px 0px 19px -5px rgba(0, 0, 0, 0.75);
 }
 
-.sidebar a button:hover{
+.sidebar a button:hover {
     margin-left: 30px;
     -webkit-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 29px -1px rgba(0, 0, 0, 0.75);
     box-shadow: -10px 0px 19px -5px rgba(0, 0, 0, 0.75);
 }
 
-.content {
+.profile-container-content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 30px;
+}
 
+.profile-container-name {
+    margin-bottom: 5%;
+}
+
+.profile-container-header {
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 40px;
+}
+
+.profile-name-input,
+.profile-surname-input,
+.profile-name-input-security {
+    border: 1px solid #bababa;
+    border-radius: 10px;
+    padding: 15px;
+    width: 25%;
+}
+
+.profile-name-input.email {
+    width: 77%;
+    margin-right: 0px;
+}
+
+input.disabled {
+    opacity: 0.3;
+}
+
+.profile-name-input {
+    margin-right: 7%;
+}
+
+.profile-input-label {
+    width: 10%;
+}
+
+.profile-input-label-password {
+    width: 15%;
+}
+.user_icon {
+    font-size: 50px;
+    color: #72bbe5;
+    padding: 10px;
+    margin-left: 2%;
+    width: 8%;
+    vertical-align: middle;
+}
+
+.profile-password-button {
+    padding: 15px;
+    border: 1px solid #72bbe5;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 40%;
+    margin: 125px 30% 0 30%;
+}
+
+.profile-password-button-profil {
+    padding: 15px;
+    border: 1px solid #72bbe5;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 40%;
+    margin: 0 30% 0 30%;
+}
+
+.profile-password-button:hover,
+.profile-password-button-profil:hover {
+    background-color: #72bbe5;
+    color: #fff;
+}
+
+@media screen and (max-width: 770px) {
+    .profile-container-header {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 20px;
+    }
+
+    .profile-container-content {
+        background-color: #fff;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .profile-name-input,
+    .profile-surname-input {
+        border: 1px solid #bababa;
+        border-radius: 10px;
+        padding: 10px;
+        width: 60%;
+        margin-bottom: 10px;
+    }
+
+    .profile-name-input.email {
+        width: 60%;
+
+    }
+
+    .profile-name-input-security {
+        border: 1px solid #bababa;
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .profile-input-label {
+        width: 30%;
+    }
+
+    .profile-input-label-password {
+        width: 80%;
+    }
+    .user_icon {
+        font-size: 30px;
+        color: #72bbe5;
+        padding: 10px;
+        padding-right: 5%;
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .profile-password-button, .profile-password-button-profil {
+        padding: 15px;
+        border: 1px solid #72bbe5;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 75%;
+        margin: 0 12.5% 0 12.5%;
+    }
 }

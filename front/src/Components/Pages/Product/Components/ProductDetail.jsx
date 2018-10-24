@@ -2,6 +2,8 @@ import React from 'react';
 
 import ProductTextInput from './ProductTextInput';
 
+import {endpoint} from '../../../../Constants';
+
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -22,20 +24,15 @@ class ProductDetail extends React.Component {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(
-                            `http://159.89.205.75:3333/api/product/model/${
-                                this.props._id
-                            }`,
-                            {
-                                method: 'DELETE',
-                                body: JSON.stringify({
-                                    _id: this.props.idProduct
-                                }),
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
+                        fetch(`${endpoint}/product/model/${this.props._id}`, {
+                            method: 'DELETE',
+                            body: JSON.stringify({
+                                _id: this.props.idProduct
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
                             }
-                        )
+                        })
                             .then(res => res.json())
                             .then(res => {
                                 if (res.success === true) {

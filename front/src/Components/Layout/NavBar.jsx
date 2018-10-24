@@ -47,10 +47,10 @@ class NavBar extends React.Component {
                             Logout
                         </button>
                     </NavLink>
-                    <NavLink to="/profil" activeClassName="active">
+                    <NavLink to="/profile/report" activeClassName="active">
                         <button>
                             <i className="fas fa-user-circle" />
-                            Profil
+                            Profile
                         </button>
                     </NavLink>
                     <NavLink to="/report" activeClassName="active">
@@ -86,10 +86,10 @@ class NavBar extends React.Component {
                             Report
                         </button>
                     </NavLink>
-                    <NavLink to="/profil" activeClassName="active">
+                    <NavLink to="/profile/report" activeClassName="active">
                         <button>
                             <i className="fas fa-user-circle" />
-                            Profil
+                            Profile
                         </button>
                     </NavLink>
                     <NavLink to="#" activeClassName="active">

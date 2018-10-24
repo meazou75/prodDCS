@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Dashboard from '../Pages/Dashboard'
-import Report from '../Pages/Report'
-import Task from '../Pages/Task'
-import Profil from '../Pages/Profil'
-import Customer from '../Pages/Customer'
-import Product from '../Pages/Product/'
-import EngineerList from '../Pages/EngineerList'
-
+import Dashboard from '../Pages/Dashboard';
+import Report from '../Pages/Report/index';
+import Task from '../Pages/Task';
+import Profil from '../Pages/Profil';
+import ProfilSecurity from '../Pages/ProfilSecurity';
+import Customer from '../Pages/Customer';
+import Product from '../Pages/Product/';
+import EngineerList from '../Pages/EngineerList';
 
 import '../../Assets/css/layout.css';
 import '../../Assets/css/accueil.css';
@@ -44,10 +44,10 @@ class Layout extends React.Component {
                     <Route exact path="/report" component={Report} />
                     <Route exact path="/task" component={Task} />
                     <Route exact path="/profile" component={Profil} />
-                    <Route exact path="/customer" component={Customer} />
                     <Route exact path="/product" component={Product} />
-                    <Route exact path="/engineer_list" component={EngineerList} />
-
+                    <Route exact path="/engineer_list" component={EngineerList}/>
+                    <Route exact path="/profile/security" component={ProfilSecurity} />
+                    <Route exact path="/profile/report" component={Customer} />
                 </div>
             </div>
         );

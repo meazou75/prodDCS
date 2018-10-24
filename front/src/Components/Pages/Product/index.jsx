@@ -2,6 +2,8 @@ import React from 'react';
 
 import '../../../Assets/css/product.css';
 
+import { endpoint } from '../../../Constants';
+
 import AddModelModal from './Components/AddModelModal';
 import AddBrandModal from './Components/AddBrandModal';
 import ProductDetail from './Components/ProductDetail';
@@ -24,7 +26,7 @@ class Product extends React.Component {
 
     getData() {
         this.setState({ loading: true });
-        fetch('http://159.89.205.75:3333/api/product')
+        fetch(`${endpoint}/product`)
             .then(res => res.json())
             .then(res => {
                 if (res.success === true) {
@@ -125,7 +127,6 @@ class Product extends React.Component {
                         })
                     }
                 />
-
                 <div className="container nopad" style={{ marginTop: '30px' }}>
                     <div className="row mainProduct-container">
                         <div
@@ -201,7 +202,7 @@ class Product extends React.Component {
                                         >
                                             Add a Model
                                         </button>
-                                    </div>
+                                    </div>  
                                 );
                             }
                         })()}

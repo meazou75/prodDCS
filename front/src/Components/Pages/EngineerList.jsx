@@ -3,16 +3,15 @@ import { Modal } from 'react-bootstrap';
 
 import '../../Assets/css/engineerList.css';
 
-class AddUserModal extends React.Component {
+import { endpoint } from '../../Constants';
+
+class AddTaskModal extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            postion: '',
-            role: ''
+            taskName: '',
+            taskDetail: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -28,7 +27,7 @@ class AddUserModal extends React.Component {
     }
 
     handleSubmit() {
-        fetch('http://159.89.205.75:3333/api/task/', {
+        fetch(`${endpoint}/task/`, {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -51,45 +50,127 @@ class AddUserModal extends React.Component {
 
     render() {
         return (
-            <div className="static-modal">
+            <div className="static-modal-engineerList">
                 <Modal
                     show={this.props.show}
                     onHide={() => {
                         this.props.handleHide();
                         this.handleReset();
                     }}
-                    className="modal-container"
+                    className="modal-container-engineerList"
                 >
                     <Modal.Header className="modal-header" closeButton>
                         <Modal.Title className="modal-title">
-                            Modify User Informations
+                            Modify Information
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <input
-                            className="modal-input"
-                            onChange={this.handleChange}
-                            value={this.state.firstName}
-                            name="firstName"
-                            placeholder= "First Name"
-                        />
-                        <input
-                            className="modal-input"
-                            onChange={this.handleChange}
-                            value={this.state.lastName}
-                            name="lastName"
-                            placeholder="Last Name"
-                        />
-                        <p style={{ textAlign: 'center' }}>
-                            <button
-                                className="modal-button-submit"
-                                onClick={() => {
-                                    this.handleSubmit();
-                                }}
-                            >
+                        <div className="profile-container-content">
+                            <div className="profile-container-name">
+                                <i className="fas fa-user-circle user_icon" />
+                                <label className="profile-input-label">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    className="profile-name-input"
+                                    name="firstName"
+                                    value={this.state.firstName}
+                                    onChange={this.handleChange}
+                                />
+                                <i className="fas fa-user-circle user_icon" />
+                                <label className="profile-input-label">
+                                    Surname
+                                </label>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    className="profile-surname-input"
+                                    value={this.state.lastName}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <div className="profile-container-name">
+                                <i class="fas fa-at user_icon" />
+                                <label className="profile-input-label">
+                                    E-mail
+                                </label>
+                                <input
+                                    className="profile-name-input email"
+                                    type="email"
+                                    name="email"
+                                    value={this.state.email}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <div className="profile-container-name">
+                                <i class="fas fa-graduation-cap user_icon" />
+                                <label className="profile-input-label">
+                                    Position
+                                </label>
+                                <input
+                                    disabled
+                                    className="profile-name-input disabled"
+                                    type="text"
+                                    name="position"
+                                    value={this.state.position}
+                                    onChange={this.handleChange}
+                                />
+                                <i class="fas fa-building user_icon" />
+                                <label className="profile-input-label">
+                                    Company
+                                </label>
+                                <input
+                                    disabled={this.state.company ? false : true}
+                                    className={
+                                        this.state.company
+                                            ? 'profile-surname-input'
+                                            : 'profile-surname-input disabled'
+                                    }
+                                    type="text"
+                                    name="company"
+                                    value={this.state.company}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <div className="profile-container-name">
+                                <i className="user_icon fas fa-user-shield" />
+                                <label className="profile-input-label">
+                                    Status
+                                </label>
+                                <input
+                                    disabled
+                                    className="profile-name-input disabled"
+                                    type="text"
+                                    name="position"
+                                    value={this.state.position}
+                                    onChange={this.handleChange}
+                                />
+                                <i className="user_icon fas fa-check" />
+                                <label className="profile-input-label">
+                                    Activation
+                                </label>
+                                <input
+                                    disabled={this.state.company ? false : true}
+                                    className={
+                                        this.state.company
+                                            ? 'profile-surname-input'
+                                            : 'profile-surname-input disabled'
+                                    }
+                                    type="text"
+                                    name="company"
+                                    value={this.state.company}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <button className="profile-password-button-profil">
                                 Submit
                             </button>
-                        </p>
+                        </div>
                     </Modal.Body>
                 </Modal>
             </div>
@@ -106,77 +187,104 @@ class EngineerList extends React.Component {
             activeProduct: 0,
             modalState: false,
             modalState2: false,
-            loading: true
+            loading: true,
+            option: 'All'
         };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     getData() {
-        fetch('http://159.89.205.75:3333/api/user')
-            .then(res => res.json())
-            .then(res => {
-                if (res.success === true) {
-                    this.setState({ user: res.user, loading: false });
-                }
-            });
+        if (this.state.option === 'All') {
+            fetch(`${endpoint}/user`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success === true) {
+                        this.setState({ user: res.user, loading: false });
+                    }
+                });
+        } else if (this.state.option === 'Customer') {
+            fetch(`${endpoint}/user/customer`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success === true) {
+                        this.setState({ user: res.user, loading: false });
+                    }
+                });
+        } else if (this.state.option === 'Engineer') {
+            fetch(`${endpoint}/user/engineer`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success === true) {
+                        this.setState({ user: res.user, loading: false });
+                    }
+                });
+        }
     }
 
     componentWillMount() {
         this.getData();
     }
 
-    render() {
-        const engineer = props => {
-            return (
-                <div className="engineer-row">
-                    <div className="engineer-row-name">
-                        {' '}
-                        <i class="icon_engineerList fas fa-user-circle" />
-                        {props.name}
-                    </div>
-                    <div className="engineer-row-email">
-                        <i class="icon_engineerList fas fa-at" />
-                        {props.email}
-                    </div>
-                    <div className="engineer-row-occupation">
-                        {props.occupation}
-                    </div>
-                    <div className="engineer-row-status">{props.status}</div>
-                    <i
-                        onClick={() => {
-                            this.setState({ modalState: true });
-                        }}
-                        class="modification_icon far fa-edit"
-                    />
-                    <i class="modification_icon far fa-times-circle" />
-                </div>
-            );
-        };
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value }, () => {
+            this.getData();
+        });
+    }
 
+    handleSubmit = e => {
+        e.preventDefault();
+        console.log(this.state.option);
+    };
+
+    render() {
         const renderUsers = () => {
             return this.state.user.map((user, index) => {
-                var role = '';
-                if (this.state.user[index].role === 1) {
-                    role = 'admin';
-                } else role = 'user';
                 return (
-                    <div key={index} {...user}>
-                        {engineer({
-                            name:
-                                this.state.user[index].firstName +
+                    <tr key={index} {...user}>
+                        <td scope="row">
+                            {this.state.user[index].firstName +
                                 ' ' +
-                                this.state.user[index].lastName,
-                            email: this.state.user[index].email,
-                            occupation: this.state.user[index].position,
-                            status: role
-                        })}
-                    </div>
+                                this.state.user[index].lastName}
+                        </td>
+                        <td scope="row">{this.state.user[index].email}</td>
+                        <td scope="row">{this.state.user[index].position}</td>
+                        <td scope="row">
+                            {this.state.user[index].role === 1
+                                ? 'admin'
+                                : 'user'}
+                        </td>
+
+                        <td scope="row">
+                            {this.state.user[index].activation ? 'Yes' : 'No'}
+                        </td>
+                        <td scope="row">
+                            <i
+                                onClick={() => {
+                                    this.setState({ modalState: true });
+                                }}
+                                className="modification_icon far fa-edit"
+                            />
+                            <i className="modification_icon far fa-times-circle" />
+                        </td>
+                    </tr>
                 );
             });
         };
 
+        const filterUpdated = (newData, filterConfiguration) => {
+            this.setState({
+                upddatedData: newData
+            });
+        };
+
+        if (this.state.loading) {
+            return <p>Loading</p>;
+        }
+
         return (
             <div>
-                <AddUserModal
+                <AddTaskModal
                     show={this.state.modalState}
                     handleHide={() => {
                         this.setState({ modalState: false });
@@ -186,34 +294,51 @@ class EngineerList extends React.Component {
                     }
                 />
                 <div className="container-select-option">
-                    <input
-                        type="text"
+                    <select
+                        name="option"
+                        value={this.state.option}
+                        onChange={this.handleChange}
                         className="input-engineerList-option"
-                        placeholder="Search"
-                    />
-                    <i class="icon_search_engineerList fas fa-search" />
-
-                    <select className="select-engineerList-option role">
+                    >
+                        <option value="All">All</option>
                         <option value="Engineer">Engineer</option>
                         <option value="Customer">Customer</option>
                     </select>
-
-                    <select className="select-engineerList-option engineer-position">
-                        <option value="Manager">Manager</option>
-                        <option value="Senior Manager">Senior Manager</option>
-                        <option value="Business Representative">
-                            Business Representative
-                        </option>
-                        <option value="Senior Business Representative">
-                            Senior Business Representative
-                        </option>
-                        <option value="Assistant Manager">
-                            Assistant Manager
-                        </option>
-                    </select>
                 </div>
 
-                <div className="container-engineer-list">{renderUsers()}</div>
+                <div className="container-engineer-list">
+                    <table className="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <i className="icon_engineerList fas fa-user-circle" />
+                                    Name
+                                </th>
+                                <th scope="col">
+                                    <i className="icon_engineerList fas fa-at" />
+                                    E-mail
+                                </th>
+                                <th scope="col">
+                                    <i className="icon_engineerList fas fa-graduation-cap" />
+                                    Occupation
+                                </th>
+                                <th scope="col">
+                                    <i className="icon_engineerList fas fa-user-shield" />
+                                    Status
+                                </th>
+                                <th scope="col">
+                                    <i className="icon_engineerList fas fa-check" />
+                                    Activation
+                                </th>
+                                <th scope="col">
+                                    <i className="icon_engineerList fas fa-exclamation" />
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>{renderUsers()}</tbody>
+                    </table>
+                </div>
             </div>
         );
     }

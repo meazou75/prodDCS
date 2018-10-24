@@ -15,21 +15,11 @@ class Accueil extends Component {
                                 <div className="dashboard-icon">
                                     <i className="fas fa-user-cog" />
                                 </div>{' '}
-                                Engineers List
+                                Users List
                             </button>
                         </a>
                     </Col>
                     <Col md={6} xs={12}>
-                        <button className="dashboard-item">
-                            <div className="dashboard-icon">
-                                <i className="fas fa-user-alt" />
-                            </div>{' '}
-                            Customers List
-                        </button>
-                    </Col>
-                </Row>
-                <Row className="dashboard-row">
-                    <Col md={4} xs={12}>
                         <button className="dashboard-item">
                             <div className="dashboard-icon">
                                 <i className="fas fa-clipboard-list" />
@@ -37,7 +27,10 @@ class Accueil extends Component {
                             Reports List
                         </button>
                     </Col>
-                    <Col md={4} xs={12}>
+
+                </Row>
+                <Row className="dashboard-row">
+                    <Col md={6} xs={12}>
                         <a href="/task">
                             <button className="dashboard-item">
                                 <div className="dashboard-icon">
@@ -47,7 +40,7 @@ class Accueil extends Component {
                             </button>
                         </a>
                     </Col>
-                    <Col md={4} xs={12}>
+                    <Col md={6} xs={12}>
                         <a href="/product">
                             <button className="dashboard-item">
                                 <div className="dashboard-icon">

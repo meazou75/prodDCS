@@ -11,7 +11,9 @@
     border: 1px solid #bed630;
     border-radius: 10px;
     padding: 10px;
-    margin-right: 10px;
+    margin: 0 25% 0 25%;
+    width: 50%;
+    text-align: center;
 }
 
 .select-engineerList-option {
@@ -35,13 +37,13 @@
 
 .container-engineer-list {
     width: 80%;
-    margin: 50px auto;
-    height: 600px;
+    margin: 0 auto;
     background-color: #fff;
     padding: 15px;
 }
 
-.engineer-row {
+.engineer-row,
+.engineer-row-header {
     background-color: #f0f0f0;
     padding: 15px;
     font-size: 15px;
@@ -61,18 +63,27 @@
 }
 
 .engineer-row-occupation {
-    width: 30%;
+    width: 25%;
+}
+
+.engineer-row-activation {
+    width: 7.5%;
 }
 .engineer-row-email {
     width: 30%;
 }
 
+.engineer-row-action {
+    width: 4%;
+}
+
 .engineer-row-status {
-    width: 10%;
+    width: 7.5%;
 }
 
 .icon_engineerList {
     padding-right: 7px;
+    color: #bed630;
 }
 
 .modification_icon {
@@ -84,6 +95,18 @@
     padding-left: 5px;
 }
 
+th {
+    text-align: left;
+}
+
+.modal-dialog {
+    width: 75%;
+}
+
+.profile-container-header-engineerList {
+    text-align: center;
+    margin-bottom: 75px;
+}
 @media screen and (max-width: 991px) {
     .container-select-option {
         width: 95%;

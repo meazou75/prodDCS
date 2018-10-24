@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { endpoint } from '../../../../Constants';
+
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -37,17 +39,12 @@ class ProductModelHeader extends React.Component {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(
-                            `http://159.89.205.75:3333/api/product/brand/${
-                                this.props._id
-                            }`,
-                            {
-                                method: 'DELETE',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
+                        fetch(`${endpoint}/product/brand/${this.props._id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
                             }
-                        )
+                        })
                             .then(res => res.json())
                             .then(res => {
                                 if (res.success === true) {
@@ -67,7 +64,7 @@ class ProductModelHeader extends React.Component {
     }
 
     handleSubmit() {
-        fetch(`http://159.89.205.75:3333/api/product/brand/${this.props._id}`, {
+        fetch(`${endpoint}/product/brand/${this.props._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 productBrand: this.state.productBrand
