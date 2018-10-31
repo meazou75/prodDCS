@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
     email      : { type: String, required: true, unique: true },
     password   : { type: String, required: true },
     role       : { type: Number, enum: [0, 1, 2]},
-    activation : { type: Boolean,default: false, },
+    activation : { type: Boolean,default: true, },
     company    : { type: String, required: function() { return this.role === 0; }},
     position   : { type: String, required: true },
     keys       : {
