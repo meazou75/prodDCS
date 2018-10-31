@@ -15,6 +15,7 @@ var UserSchema = new mongoose.Schema({
         public_key  : { type: Buffer, required: true},
         private_key : { type: Buffer, required: true}
     },
+    signature  : { type: String, required: true}
 });
 
 mongoose.model('User', UserSchema);

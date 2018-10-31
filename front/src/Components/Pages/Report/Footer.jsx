@@ -6,7 +6,7 @@ const Footer = props => {
             <hr />
             <div className="report-footer">
                 {(() => {
-                    if (props.state !== 0) {
+                    if (props.currentState !== 0) {
                         return (
                             <button
                                 style={{ float: 'left' }}
@@ -24,12 +24,16 @@ const Footer = props => {
                     style={{ float: 'right' }}
                     className="btn btn-success"
                     onClick={() => {
-                        if (props.validateState(props.state)) {
-                            props.nextStep();
+                        if (props.validateState(props.currentState)) {
+                            if(props.currentState === 2) {
+                                props.handleSubmit();
+                            } else {
+                                props.nextStep();
+                            }
                         }
                     }}
                 >
-                    {props.state === 2 ? 'Validate' : 'Next'}
+                    {props.currentState === 2 ? 'Validate' : 'Next'}
                 </button>
             </div>
         </div>

@@ -107,3 +107,34 @@
 .auth-container .successfully-register p {
     padding-bottom: 15px;
 }
+
+.signature {
+    margin-bottom: 25px;
+}
+
+.signature .sigCanvas {
+    border: 1px solid black;
+}
+
+.signature p {
+    border-bottom: 1px solid black;
+    padding-bottom: 7px;
+}
+
+.signature button {
+    display: block;
+    width: 20%;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .auth-container {
+        max-width: 90%;
+    }
+
+    .signature button {
+        margin-top: 10px;
+        width: 100px;
+    }
+}

@@ -7,6 +7,7 @@ const TaskController = require('./TaskController');
 const AuthController = require('./AuthController');
 const ProductController = require('./ProductController');
 const UserController = require('./UserController');
+const ReportController = require('./ReportController');
 
 router.use('/', (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,8 +22,8 @@ router.use('/', (req, res, next) => {
 router.use('/task', TaskController);
 router.use('/auth', AuthController);
 router.use('/product', ProductController);
+router.use('/report', ReportController);
 router.use('/user', UserController);
-router.use('/user/customer', UserController);
-router.use('/user/engineer', UserController);
+
 
 module.exports = router;

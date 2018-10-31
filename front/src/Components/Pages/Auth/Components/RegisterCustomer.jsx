@@ -2,6 +2,8 @@ import React from 'react';
 
 import AuthService from '../../../../Service/AuthService';
 
+import SignatureCanvas from 'react-signature-canvas';
+
 class RegisterCustomer extends React.Component {
     constructor(props) {
         super(props);
@@ -14,8 +16,11 @@ class RegisterCustomer extends React.Component {
             passwordC: '',
             role: 0,
             company: '',
-            position: ''
+            position: '',
+            signature: ''
         };
+
+        this.sigCanvas = null;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,24 +34,26 @@ class RegisterCustomer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.AuthService.register(this.state)
-            .then(res => {
-                this.props.onSuccess();
-            })
-            .catch(err =>
-                this.props.addNotification({
-                    title: "ERROR : " + err,
-                    color: '#ff4858'
+        this.setState({ signature: this.sigCanvas.toDataURL() }, () => {
+            this.AuthService.register(this.state)
+                .then(res => {
+                    this.props.onSuccess();
                 })
-            );
+                .catch(err =>
+                    this.props.addNotification({
+                        title: 'ERROR : ' + err,
+                        color: '#ff4858'
+                    })
+                );
+        });
     }
 
     render() {
         return (
-            <div class="auth-container">
+            <div className="auth-container">
                 <h1>Customer Registration : </h1>
                 <hr />
-                <form class="register-form">
+                <form className="register-form" onSubmit={e => e.preventDefault()}>
                     <div className="row">
                         <div
                             style={{ padding: '0px', paddingRight: '6px' }}
@@ -137,8 +144,32 @@ class RegisterCustomer extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="signature">
+                                <p>Signature</p>
+                                <SignatureCanvas
+                                    backgroundColor="#fff"
+                                    canvasProps={{
+                                        width: 250,
+                                        height: 100,
+                                        className: 'sigCanvas'
+                                    }}
+                                    ref={ref => {
+                                        this.sigCanvas = ref;
+                                    }}
+                                />
+                                <button
+                                    className="clear-button"
+                                    onClick={() => this.sigCanvas.clear()}
+                                >
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <button onClick={this.handleSubmit}>Create</button>
-                    <p class="message">
+                    <p className="message">
                         Already registered? <a href="/auth/login">Sign In</a>
                     </p>
                 </form>

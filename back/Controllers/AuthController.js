@@ -52,7 +52,8 @@ router.post('/register', function(req, res) {
             keys: {
                 public_key: keys.public_key,
                 private_key: keys.private_key
-            }
+            },
+            signature: req.body.signature
         },
         function(err, user) {
             if (err) {
@@ -76,7 +77,7 @@ router.post('/register', function(req, res) {
     );
 });
 
-router.get('/me', VerifyToken, Permit(0,1), function(req, res, next) {
+router.get('/me', VerifyToken, Permit(0, 1), function(req, res, next) {
     User.findById(req.user._id, { password: 0, keys: 0 }, function(err, user) {
         if (err)
             return res
@@ -84,13 +85,44 @@ router.get('/me', VerifyToken, Permit(0,1), function(req, res, next) {
                 .send('There was a problem finding the user.');
         if (!user) return res.status(404).send('No user found.');
 
-        res.status(200).send({success: true, user : user});
+        res.status(200).send({ success: true, user: user });
     });
 });
 // add the middleware function
 /*router.use(function(user, req, res, next) {
     res.status(200).send(user);
 });*/
+
+router.put('/password', VerifyToken, Permit(0, 1, 2), function(req, res) {
+    User.findById(req.user._id, {}, function(err, user) {
+        if (err)
+            return res
+                .status(500)
+                .send('There was a problem finding the user.');
+        if (!user)
+            return res
+                .status(404)
+                .send({ success: false, message: 'No user found.' });
+        if (bcrypt.compareSync(req.body.password, user.password)) {
+            var hashedPassword = bcrypt.hashSync(req.body.passwordNew, 8);
+            User.update(
+                { _id: req.user._id },
+                { password: hashedPassword },
+                function(err, user) {
+                    if (err)
+                        return res
+                            .status(500)
+                            .send('There was a problem finding the user.');
+                    res.status(200).send({ success: true, message: 'Password changed !' });
+                }
+            );
+        } else {
+            return res
+                .status(401)
+                .send({ success: false, message: 'Password doesnt match' });
+        }
+    });
+});
 
 router.post('/login', function(req, res) {
     User.findOne({ email: req.body.email }, function(err, user) {

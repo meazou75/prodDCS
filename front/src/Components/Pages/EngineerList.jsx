@@ -5,6 +5,8 @@ import '../../Assets/css/engineerList.css';
 
 import { endpoint } from '../../Constants';
 
+import { fetchApi } from '../../Service/NetworkService'; 
+
 class AddTaskModal extends React.Component {
     constructor(props) {
         super(props);
@@ -260,12 +262,23 @@ class EngineerList extends React.Component {
                         </td>
                         <td scope="row">
                             <i
+                                style={{ cursor: 'pointer' }}
                                 onClick={() => {
                                     this.setState({ modalState: true });
                                 }}
                                 className="modification_icon far fa-edit"
                             />
-                            <i className="modification_icon far fa-times-circle" />
+                            <i
+                                className="modification_icon far fa-times-circle"
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => {
+                                    fetchApi(`user/${user._id}`, {
+                                        method: 'DELETE'
+                                    })
+                                        .then(res => this.getData())
+                                        .catch(err => console.error(err));
+                                }}
+                            />
                         </td>
                     </tr>
                 );

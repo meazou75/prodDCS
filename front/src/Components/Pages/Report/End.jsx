@@ -1,10 +1,11 @@
 import React from 'react';
+import { endpoint } from '../../../Constants';
 
 class End extends React.Component {
     render() {
         return (
             <div className="report-container">
-                <h2>Task Id: #22222 successfully created !</h2>
+                <h2>Report Id: #{this.props.reportId} successfully created !</h2>
                 <div className="progress">
                     <div
                         className="progress-bar progress-bar-success"
@@ -21,6 +22,15 @@ class End extends React.Component {
                         To come back at the home page, please click on the
                         bottom belowe.
                     </p>
+                    <a href={`${endpoint}/report/download/${this.props.reportId}`}>
+                        <button
+                            style={{marginRight: '10px'}}
+                            type="button"
+                            className="btn btn-primary btn-lg"
+                        >
+                            Download the report
+                        </button>
+                    </a>
                     <a href="/dashboard">
                         <button
                             type="button"
