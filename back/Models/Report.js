@@ -26,7 +26,8 @@ var ReportSchema = new mongoose.Schema({
                 }
             ]
         }
-    ]
+    ],
+    status : { type: String, enum : ['Pending','Accepted','Rejected'], default : 'Pending'}
 });
 
 mongoose.model('Report', ReportSchema);

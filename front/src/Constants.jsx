@@ -1,1 +1,1 @@
-export const endpoint = 'http://159.89.205.75:3333/api';
+export const endpoint = 'http://localhost:3333/api';

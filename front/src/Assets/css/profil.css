@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #bed62f;
+    background-color: #f0f0f0;
     color: white;
     height: calc(100vh - 85px);
     padding: 0px;
@@ -10,6 +10,8 @@
     color: white;
     padding: 22px 0px;
     margin: 0;
+    background-color: #72bbe5;
+
 }
 
 .sidebar a {

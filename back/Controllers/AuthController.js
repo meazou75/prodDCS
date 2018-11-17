@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const validator = require('validator');
-const rsaKeygen = require('rsa-keygen');
+const NodeRSA = require('node-rsa');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config');
@@ -34,7 +34,7 @@ router.post('/register', function(req, res) {
 
     /* Generate Keys */
 
-    var keys = rsaKeygen.generate();
+    const key = new NodeRSA({b: 512});
 
     /* Hash Password */
 
@@ -49,10 +49,7 @@ router.post('/register', function(req, res) {
             role: req.body.role,
             company: req.body.company,
             position: req.body.position,
-            keys: {
-                public_key: keys.public_key,
-                private_key: keys.private_key
-            },
+            rsakey: key.exportKey(),
             signature: req.body.signature
         },
         function(err, user) {
@@ -68,11 +65,7 @@ router.post('/register', function(req, res) {
                     message: 'There was a problem registering the user.'
                 });
             }
-            // create a token
-            var token = jwt.sign({ id: user._id }, config.secret, {
-                expiresIn: 86400 // expires in 24 hours
-            });
-            res.status(200).send({ auth: true, token: token });
+            res.status(200).send({ success: true });
         }
     );
 });
@@ -113,7 +106,10 @@ router.put('/password', VerifyToken, Permit(0, 1, 2), function(req, res) {
                         return res
                             .status(500)
                             .send('There was a problem finding the user.');
-                    res.status(200).send({ success: true, message: 'Password changed !' });
+                    res.status(200).send({
+                        success: true,
+                        message: 'Password changed !'
+                    });
                 }
             );
         } else {
@@ -160,7 +156,7 @@ router.post('/login', function(req, res) {
 
         /* Token Generation */
 
-        var token = jwt.sign({ user }, config.secret, {
+        var token = jwt.sign({ role: user.role, user: user }, config.secret, {
             expiresIn: 86400 // expires in 24 hours
         });
 

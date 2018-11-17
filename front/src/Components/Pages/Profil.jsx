@@ -47,7 +47,7 @@ class Profil extends React.Component {
         return (
             <Row className="profil-container">
                 <Col md={2} className="sidebar">
-                    <h3>My Profil</h3>
+                    <h3>My Profile</h3>
                     <NavLink to="/profile/report" activeClassName="active">
                         <button>Report List</button>
                     </NavLink>

@@ -35,38 +35,113 @@ class NavBar extends React.Component {
                     </button>
                 </p>
 
-                <div className="nav-desktop hidden-xs hidden-sm">
-                    <NavLink to="#" activeClassName="active">
-                        <button
-                            onClick={() => {
-                                Auth.logout();
-                                this.props.history.replace('/auth/login');
-                            }}
-                        >
-                            <i className="fas fa-sign-out-alt" />
-                            Logout
-                        </button>
-                    </NavLink>
-                    <NavLink to="/profile/report" activeClassName="active">
-                        <button>
-                            <i className="fas fa-user-circle" />
-                            Profile
-                        </button>
-                    </NavLink>
-                    <NavLink to="/report" activeClassName="active">
-                        <button>
-                            <i className="fas fa-file-alt" />
-                            Report
-                        </button>
-                    </NavLink>
-
-                    <NavLink to="/dashboard" activeClassName="active">
-                        <button>
-                            <i className="fas fa-tachometer-alt" />
-                            Dashboard
-                        </button>
-                    </NavLink>
-                </div>
+                {(() => {
+                    if (Auth.loggedIn() && Auth.getRole() === 0) {
+                        return (
+                            <div className="nav-desktop hidden-xs hidden-sm">
+                                <NavLink to="#" activeClassName="active">
+                                    <button
+                                        onClick={() => {
+                                            Auth.logout();
+                                            this.props.history.replace(
+                                                '/auth/login'
+                                            );
+                                        }}
+                                    >
+                                        <i className="fas fa-sign-out-alt" />
+                                        Logout
+                                    </button>
+                                </NavLink>
+                                <NavLink
+                                    to="/profile/report"
+                                    activeClassName="active"
+                                >
+                                    <button>
+                                        <i className="fas fa-user-circle" />
+                                        Profile
+                                    </button>
+                                </NavLink>
+                            </div>
+                        );
+                    }
+                    if (Auth.loggedIn() && Auth.getRole() === 1) {
+                        return (
+                            <div className="nav-desktop hidden-xs hidden-sm">
+                                <NavLink to="#" activeClassName="active">
+                                    <button
+                                        onClick={() => {
+                                            Auth.logout();
+                                            this.props.history.replace(
+                                                '/auth/login'
+                                            );
+                                        }}
+                                    >
+                                        <i className="fas fa-sign-out-alt" />
+                                        Logout
+                                    </button>
+                                </NavLink>
+                                <NavLink
+                                    to="/profile/report"
+                                    activeClassName="active"
+                                >
+                                    <button>
+                                        <i className="fas fa-user-circle" />
+                                        Profile
+                                    </button>
+                                </NavLink>
+                                <NavLink to="/report" activeClassName="active">
+                                    <button>
+                                        <i className="fas fa-file-alt" />
+                                        Report
+                                    </button>
+                                </NavLink>
+                            </div>
+                        );
+                    }
+                    if (Auth.loggedIn() && Auth.getRole() === 2) {
+                        return (
+                            <div className="nav-desktop hidden-xs hidden-sm">
+                                <NavLink to="#" activeClassName="active">
+                                    <button
+                                        onClick={() => {
+                                            Auth.logout();
+                                            this.props.history.replace(
+                                                '/auth/login'
+                                            );
+                                        }}
+                                    >
+                                        <i className="fas fa-sign-out-alt" />
+                                        Logout
+                                    </button>
+                                </NavLink>
+                                <NavLink
+                                    to="/profile/report"
+                                    activeClassName="active"
+                                >
+                                    <button>
+                                        <i className="fas fa-user-circle" />
+                                        Profile
+                                    </button>
+                                </NavLink>
+                                <NavLink to="/report" activeClassName="active">
+                                    <button>
+                                        <i className="fas fa-file-alt" />
+                                        Report
+                                    </button>
+                                </NavLink>
+                                <NavLink
+                                    to="/dashboard"
+                                    activeClassName="active"
+                                >
+                                    <button>
+                                        <i className="fas fa-tachometer-alt" />
+                                        Dashboard
+                                    </button>
+                                </NavLink>
+                            </div>
+                        );
+                    }
+                })()}
 
                 <div
                     className="nav-responsive hidden-lg hidden-md"

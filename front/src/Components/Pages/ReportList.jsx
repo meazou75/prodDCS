@@ -96,9 +96,9 @@ function pendingReport(props, getData) {
             <div className="pending-report">
                 <i className="fas fa-file-alt" />
                 {(() => {
-                    if (stringtodisplay.length > 48) {
+                    if (stringtodisplay.length > 75) {
                         return (
-                            <span>{stringtodisplay.substring(0, 48)}...</span>
+                            <span>{stringtodisplay.substring(0, 75)}...</span>
                         );
                     }
                     return <span>{stringtodisplay}</span>;
@@ -144,9 +144,9 @@ function approvedReport(props, getData) {
             <div className="approved-report">
                 <i className="fas fa-file-alt" />
                 {(() => {
-                    if (stringtodisplay.length > 48) {
+                    if (stringtodisplay.length > 75) {
                         return (
-                            <span>{stringtodisplay.substring(0, 48)}...</span>
+                            <span>{stringtodisplay.substring(0, 75)}...</span>
                         );
                     }
                     return <span>{stringtodisplay}</span>;
@@ -180,9 +180,9 @@ function rejectedReport(props, getData) {
             <div className="rejected-report">
                 <i className="fas fa-file-alt" />
                 {(() => {
-                    if (stringtodisplay.length > 58) {
+                    if (stringtodisplay.length > 75) {
                         return (
-                            <span>{stringtodisplay.substring(0, 58)}...</span>
+                            <span>{stringtodisplay.substring(0, 75)}...</span>
                         );
                     }
                     return <span>{stringtodisplay}</span>;
@@ -199,12 +199,11 @@ function rejectedReport(props, getData) {
     );
 }
 
-class Customer extends React.Component {
+class ReportList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            tasks: [],
             reports: [],
             modalState: false,
             modal2State: false,
@@ -214,7 +213,8 @@ class Customer extends React.Component {
     }
 
     getData() {
-        fetchApi(`/report/me`)
+        fetch(`${endpoint}/report`)
+            .then(res => res.json())
             .then(res => {
                 if (res.success === true) {
                     this.setState({ reports: res.reports, loading: false });
@@ -227,7 +227,6 @@ class Customer extends React.Component {
     }
 
     render() {
-
         const renderPendingReports = () => {
             return this.state.reports.map((reports, index) => {
                 if (this.state.reports[index].status === 'Pending') {
@@ -266,20 +265,13 @@ class Customer extends React.Component {
 
         return (
             <Row className="profil-container">
-                <Col md={2} className="sidebar">
-                    <h3>My Profile</h3>
-                    <NavLink to="/profile/report" activeClassName="active">
-                        <button>Report List</button>
-                    </NavLink>
-                    <NavLink to="/profile" activeClassName="active">
-                        <button>Personal Information</button>
-                    </NavLink>
-                    <NavLink to="/profile/security" activeClassName="active">
-                        <button>Security</button>
-                    </NavLink>
-                </Col>
-                <Col md={10} className="content">
+                <Col md={12} className="content">
                     <div className="main-container">
+                        <h2 className="task-caption report_list_header">
+                            {' '}
+                            <i className="fas fa-clipboard-list icon_task" />
+                            Reports List
+                        </h2>
                         <div className="container-customer pending-container">
                             <div className="pending-container-header">
                                 Waiting Reports
@@ -300,4 +292,4 @@ class Customer extends React.Component {
     }
 }
 
-export default Customer;
+export default ReportList;

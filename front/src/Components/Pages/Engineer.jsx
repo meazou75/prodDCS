@@ -6,75 +6,12 @@ import { Col, Row } from 'react-bootstrap';
 
 import { NavLink } from 'react-router-dom';
 
-import { endpoint } from '../../Constants';
-
-import { confirmAlert } from 'react-confirm-alert'; // Import
-
 import { fetchApi } from '../../Service/NetworkService';
 
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-function submitReject(props, getData) {
-    confirmAlert({
-        title: 'Reject Confirmation',
-        message: 'Are you sure you want to reject it ?',
-        buttons: [
-            {
-                label: 'Yes',
-                onClick: () => {
-                    fetchApi(`/report/status/${props._id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({
-                            status: 'Rejected'
-                        })
-                    })
-                        .then(res => {
-                            if (res.success === true) {
-                                getData();
-                            }
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        });
-                }
-            },
-            {
-                label: 'No'
-            }
-        ]
-    });
-}
+import { endpoint } from '../../Constants';
 
-function submitAccept(props, getData) {
-    confirmAlert({
-        title: 'Accept Confirmation',
-        message: 'Are you sure you want to accept it ?',
-        buttons: [
-            {
-                label: 'Yes',
-                onClick: () => {
-                    fetchApi(`/report/status/${props._id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({
-                            status: 'Accepted'
-                        })
-                    })
-                        .then(res => {
-                            if (res.success === true) {
-                                getData();
-                            }
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        });
-                }
-            },
-            {
-                label: 'No'
-            }
-        ]
-    });
-}
 
 function pendingReport(props, getData) {
     const stringtodisplay =
@@ -96,26 +33,13 @@ function pendingReport(props, getData) {
             <div className="pending-report">
                 <i className="fas fa-file-alt" />
                 {(() => {
-                    if (stringtodisplay.length > 48) {
+                    if (stringtodisplay.length > 58) {
                         return (
-                            <span>{stringtodisplay.substring(0, 48)}...</span>
+                            <span>{stringtodisplay.substring(0, 58)}...</span>
                         );
                     }
                     return <span>{stringtodisplay}</span>;
                 })()}
-
-                <a
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => submitReject(props, getData)}
-                >
-                    <i class="icon_cross fas fa-times icon" />
-                </a>
-                <a
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => submitAccept(props, getData)}
-                >
-                    <i class="icon_check fas fa-check icon" />
-                </a>
                 <a href={`${endpoint}/report/download/${props._id}`} style={{ cursor: 'pointer' }}>
                     <i class="icon fas fa-download" />
                 </a>
@@ -144,23 +68,20 @@ function approvedReport(props, getData) {
             <div className="approved-report">
                 <i className="fas fa-file-alt" />
                 {(() => {
-                    if (stringtodisplay.length > 48) {
+                    if (stringtodisplay.length > 58) {
                         return (
-                            <span>{stringtodisplay.substring(0, 48)}...</span>
+                            <span>{stringtodisplay.substring(0, 58)}...</span>
                         );
                     }
                     return <span>{stringtodisplay}</span>;
                 })()}
-
-                <a href={`${endpoint}/report/download/${props._id}`} style={{ cursor: 'pointer' }}>
-                    <i class="icon_download fas fa-download" />
-                </a>
             </div>
         </div>
     );
 }
 
 function rejectedReport(props, getData) {
+    console.log(props);
     const stringtodisplay =
         props.timeIn.substring(0, 10) +
         ' - ' +
@@ -187,19 +108,12 @@ function rejectedReport(props, getData) {
                     }
                     return <span>{stringtodisplay}</span>;
                 })()}
-
-                <a style={{ cursor: 'pointer' }}>
-                    <i class="icon far fa-edit" />
-                </a>
-                <a style={{ cursor: 'pointer' }}>
-                    <i class="icon far fa-times-circle" />
-                </a>
             </div>
         </div>
     );
 }
 
-class Customer extends React.Component {
+class Engineer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -300,4 +214,4 @@ class Customer extends React.Component {
     }
 }
 
-export default Customer;
+export default Engineer;

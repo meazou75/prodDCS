@@ -34,7 +34,6 @@ export default class AuthService {
                 if (res.auth === false) {
                     return Promise.reject(res.message);
                 }
-                this.setToken(res.token); // Setting the token in localStorage
                 return Promise.resolve(res);
             });
     }
