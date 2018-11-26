@@ -1,11 +1,14 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import '../../Assets/css/engineerList.css';
 
 import { endpoint } from '../../Constants';
 
 import { fetchApi } from '../../Service/NetworkService';
+
+import { addNotification } from '../../Redux/Actions';
 
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
@@ -18,42 +21,65 @@ class AddTaskModal extends React.Component {
         this.state = {
             _id: '',
             activation: '',
-            taskDetail: '',
             firstName: '',
             lastName: '',
             email: '',
             position: '',
-            company: ''
+            company: '',
+            role: null
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleReset = this.handleReset.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    componentDidMount() {
+        this.setState({
+            activation: this.props.user.activation
+                ? 'true'
+                : 'false',
+            firstName: this.props.user.firstName
+                ? this.props.user.firstName
+                : null,
+            lastName: this.props.user.lastName
+                ? this.props.user.lastName
+                : null,
+            email: this.props.user.email ? this.props.user.email : null,
+            position: this.props.user.position
+                ? this.props.user.position
+                : null,
+            company: this.props.user.company ? this.props.user.company : null,
+            role: this.props.user.role ? this.props.user.role : null
+        });
+    }
+
     handleSubmit() {
-        fetch(`${endpoint}/user/`, {
-            method: 'PUT',
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        const { firstName, lastName, email, position, company } = this.state;
+
+        const role = parseInt(this.state.role, 10);
+
+        const activation = this.state.activation === 'true';
+
+        fetchApi(`/user/${this.props.user._id}`, {
+            body: JSON.stringify({
+                firstName,
+                lastName,
+                email,
+                position,
+                company,
+                activation,
+                role
+            }),
+            method: 'PUT'
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.success === true) {
-                    this.props.onSuccess(res.task);
-                    this.setState({ taskName: '', taskDetail: '' });
-                    this.props.handleHide();
-                }
+            .then(() => {
+                this.props.onSuccess();
             })
-            .catch(err => {
-                console.error(err);
-                this.setState({ taskName: '', taskDetail: '' });
-            });
+            .catch(err => console.error(err));
     }
 
     render() {
@@ -63,7 +89,6 @@ class AddTaskModal extends React.Component {
                     show={this.props.show}
                     onHide={() => {
                         this.props.handleHide();
-                        this.handleReset();
                     }}
                     className="modal-container-engineerList"
                 >
@@ -83,7 +108,7 @@ class AddTaskModal extends React.Component {
                                     type="text"
                                     className="profile-name-input"
                                     name="firstName"
-                                    value={this.props.user.firstName}
+                                    value={this.state.firstName}
                                     onChange={this.handleChange}
                                 />
                                 <i className="fas fa-user-circle user_icon" />
@@ -94,7 +119,7 @@ class AddTaskModal extends React.Component {
                                     type="text"
                                     name="lastName"
                                     className="profile-surname-input"
-                                    value={this.props.user.lastName}
+                                    value={this.state.lastName}
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -108,7 +133,7 @@ class AddTaskModal extends React.Component {
                                     className="profile-name-input email"
                                     type="email"
                                     name="email"
-                                    value={this.props.user.email}
+                                    value={this.state.email}
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -122,7 +147,7 @@ class AddTaskModal extends React.Component {
                                     className="profile-name-input"
                                     type="text"
                                     name="position"
-                                    value={this.props.user.position}
+                                    value={this.state.position}
                                     onChange={this.handleChange}
                                 />
                                 <i class="fas fa-building user_icon" />
@@ -130,10 +155,10 @@ class AddTaskModal extends React.Component {
                                     Company
                                 </label>
                                 <input
-                                    className='profile-surname-input'
+                                    className="profile-surname-input"
                                     type="text"
                                     name="company"
-                                    value={this.props.user.company}
+                                    value={this.state.company}
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -143,27 +168,32 @@ class AddTaskModal extends React.Component {
                                 <label className="profile-input-label">
                                     Status
                                 </label>
-                                <input
-                                    className="profile-name-input"
-                                    type="text"
-                                    name="position"
-                                    value={this.props.user.role != 2 ? 'user' : 'admin'}
+                                <select
+                                    name="role"
+                                    value={this.state.role}
                                     onChange={this.handleChange}
-                                />
+                                >
+                                    <option value="0">Customer</option>
+                                    <option value="1">Engineer</option>
+                                    <option value="2">Admin</option>
+                                </select>
                                 <i className="user_icon fas fa-check" />
                                 <label className="profile-input-label">
                                     Activation
                                 </label>
-                                <input
-                                    className='profile-surname-input'
-                                    type="text"
-                                    name="company"
-                                    value={this.props.user.activation}
+                                <select
+                                    name="activation"
+                                    value={this.state.activation}
                                     onChange={this.handleChange}
-                                />
+                                >
+                                    <option value="true">Activated</option>
+                                    <option value="false">Locked</option>
+                                </select>
                             </div>
-
-                            <button className="profile-password-button-profil">
+                            <button
+                                className="profile-password-button-profil"
+                                onClick={this.handleSubmit}
+                            >
                                 Submit
                             </button>
                         </div>
@@ -198,13 +228,13 @@ class EngineerList extends React.Component {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        console.log(props)
+                        console.log(props);
                         fetchApi(`user/${props}`, {
                             method: 'DELETE'
                         })
                             .then(res => {
                                 if (res.success === true) {
-                                   this.getData();
+                                    this.getData();
                                 }
                             })
                             .catch(err => {
@@ -265,23 +295,24 @@ class EngineerList extends React.Component {
     render() {
         const renderUsers = () => {
             return this.state.user.map((user, index) => {
+                console.log(user)
                 return (
                     <tr key={index} {...user}>
                         <td scope="row">
-                            {this.state.user[index].firstName +
+                            {user.firstName +
                                 ' ' +
-                                this.state.user[index].lastName}
+                                user.lastName}
                         </td>
-                        <td scope="row">{this.state.user[index].email}</td>
-                        <td scope="row">{this.state.user[index].position}</td>
+                        <td scope="row">{user.email}</td>
+                        <td scope="row">{user.position}</td>
                         <td scope="row">
-                            {this.state.user[index].role === 2
+                            {user.role === 2
                                 ? 'admin'
-                                : 'user'}
+                                : user.role === 0 ? 'cust' : 'eng'}
                         </td>
 
                         <td scope="row">
-                            {this.state.user[index].activation ? 'Yes' : 'No'}
+                            {user.activation ? 'Yes' : 'No'}
                         </td>
                         <td scope="row">
                             <i
@@ -298,8 +329,10 @@ class EngineerList extends React.Component {
                                 className="modification_icon far fa-times-circle"
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => {
-                                    this.submitDelete(this.state.user[index]._id);
-                                    console.log(this.state.user[index]._id);
+                                    this.submitDelete(
+                                        user._id
+                                    );
+                                    console.log(user._id);
                                 }}
                             />
                         </td>
@@ -328,11 +361,14 @@ class EngineerList extends React.Component {
                                 handleHide={() => {
                                     this.setState({ modalState: false });
                                 }}
-                                onSuccess={user =>
-                                    this.setState({
-                                        user: [...this.state.user, user]
-                                    })
-                                }
+                                onSuccess={() => {
+                                    this.getData();
+                                    this.setState({ modalState: false });
+                                    this.props.addNotification({
+                                        title: "You've successfully updated the user",
+                                        color: '#28cdbf'
+                                    });
+                                }}
                                 user={this.state.user[this.state.selected_user]}
                             />
                         );
@@ -389,4 +425,7 @@ class EngineerList extends React.Component {
     }
 }
 
-export default EngineerList;
+export default connect(
+    null,
+    { addNotification }
+)(EngineerList);

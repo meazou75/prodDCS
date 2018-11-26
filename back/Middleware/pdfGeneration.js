@@ -38,28 +38,13 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
         .text(date, 460, 60)
         .opacity(1)
 
-        // Names and Surnames of the engineer and the customer
-        .fontSize(12)
-        .text(engineerInfo.lastName + ' ' + engineerInfo.firstName, 50, 99)
-        .fontSize(9)
-        .text(engineerInfo.position, 50, 110)
-        .fontSize(9)
-        .text(engineerInfo.email, 50, 120)
-        .fontSize(12)
-        .text(customerInfo.lastName + ' ' + customerInfo.firstName, 280, 99, {
+        .text(customerInfo.firstName + ' ' + customerInfo.lastName, 50, 99, {
             width: 270,
-            align: 'right'
         })
         .fontSize(9)
-        .text(customerInfo.position + ' of ' + customerInfo.company, 280, 110, {
+        .text(customerInfo.company, 50, 115, {
             width: 270,
-            align: 'right'
         })
-        .fontSize(9)
-        .text(customerInfo.email, 280, 120, {
-            width: 270,
-            align: 'right'
-        });
 
     timein = new Date(infos.timeIn);
     timeout = new Date(infos.timeOut);
@@ -118,9 +103,9 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
                 159
             )
             .fontSize(9)
-            .text('TOTAL TIME : ', 70, 180)
+            .text('TOTAL TIME : ', 50, 180)
             .fontSize(14)
-            .text(msToTime(infos.totalTime), 170, 178);
+            .text(msToTime(infos.totalTime), 150, 178);
     } else {
         doc.fontSize(9)
             .text('TIME IN : ', 50, 140)
@@ -151,10 +136,13 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
                 159
             )
             .fontSize(9)
-            .text('TOTAL TIME : ', 70, 180)
+            .text('TOTAL TIME : ', 50, 180)
             .fontSize(14)
-            .text(msToTime(infos.totalTime), 170, 178);
+            .text(msToTime(infos.totalTime), 150, 178);
     }
+
+    doc.moveDown()
+        .text("SERVICE DETAILS :", 50, 220);
 
     // Dynamic tasks
     infos.tasks.forEach(function(task) {
@@ -164,14 +152,10 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
             doc.moveDown();
         }
 
-        buff_y = doc.y + 20;
+        buff_y = doc.y;
 
         // Infos
         doc.fontSize(10)
-            .text('QUANTITY : ', 300, buff_y)
-            .fontSize(14)
-            .text(task.quantity, 360, buff_y - 3)
-            .fontSize(10)
             .text('TASK TYPE : ', 50, buff_y)
             .fontSize(14)
             .text(task.taskType.slice(0, 15), 150, buff_y - 3)
@@ -182,9 +166,13 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
             .fontSize(14)
             .text(task.productBrand.slice(0, 15), 150, buff_y - 3)
             .fontSize(10)
-            .text('PRODUCT MODEL : ', 280, buff_y)
+            .text('PRODUCT MODEL : ', 240, buff_y)
             .fontSize(14)
-            .text(task.productModel.slice(0, 15), 380, buff_y - 3);
+            .text(task.productModel.slice(0, 15), 340, buff_y - 3)
+            .text('QUANTITY : ', 400, buff_y)
+            .fontSize(14)
+            .text(task.quantity, 480, buff_y - 3)
+            .fontSize(10);
 
         if (doc.y >= PAGE_HEIGHT - 100) {
             doc.addPage().x = (50).y = 50;
@@ -239,7 +227,7 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
     doc.moveDown();
 
     // Signature from both sides
-    if (doc.y >= PAGE_HEIGHT - 100) {
+    if (doc.y >= PAGE_HEIGHT - 120) {
         doc.addPage().x = (50).y = 50;
     }
     var buff_y = doc.y + 20;
@@ -250,9 +238,9 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
 
     doc.moveDown()
         .fontSize(10)
-        .text(engineerInfo.lastName, 100, buff_y)
+        .text("DCS representative", 100, buff_y)
         .fontSize(10)
-        .text(customerInfo.lastName, 450, buff_y)
+        .text("Customer", 450, buff_y)
         //    .image(engineerInfo.signature, 50, buff_y, {width: 100, height: 50})
 
         // temporaire, pour le dev
@@ -264,11 +252,28 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
         //    .image(customerInfo.signature, 50, buff_y, {width: 100, height: 50})
 
         // temporaire, pour le dev
-        //.image(customerInfo.signature, 400, buff_y + 10, { scale: 0.6 })
+        .image(customerInfo.signature, 400, buff_y + 10, { scale: 0.6 })
 
         .moveTo(400, buff_y + 60)
         .lineTo(550, buff_y + 60)
         .stroke()
+
+        .fontSize(12)
+        .text(engineerInfo.lastName + ' ' + engineerInfo.firstName, 50, buff_y + 70)
+        .fontSize(9)
+        .text(engineerInfo.position, 50, buff_y + 85)
+        .fontSize(9)
+
+        .fontSize(12)
+        .text(customerInfo.lastName + ' ' + customerInfo.firstName, 280, buff_y + 70, {
+            width: 270,
+            align: 'right'
+        })
+        .fontSize(9)
+        .text(customerInfo.position + ' of ' + customerInfo.company, 280, buff_y + 85, {
+            width: 270,
+            align: 'right'
+        })
 
         .end();
 }
@@ -295,28 +300,13 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
         .text(date, 460, 60)
         .opacity(1)
 
-        // Names and Surnames of the engineer and the customer
-        .fontSize(12)
-        .text(engineerInfo.lastName + ' ' + engineerInfo.firstName, 50, 99)
-        .fontSize(9)
-        .text(engineerInfo.position, 50, 110)
-        .fontSize(9)
-        .text(engineerInfo.email, 50, 120)
-        .fontSize(12)
-        .text(customerInfo.lastName + ' ' + customerInfo.firstName, 280, 99, {
+        .text(customerInfo.firstName + ' ' + customerInfo.lastName, 50, 99, {
             width: 270,
-            align: 'right'
         })
         .fontSize(9)
-        .text(customerInfo.position + ' of ' + customerInfo.company, 280, 110, {
+        .text(customerInfo.company, 50, 115, {
             width: 270,
-            align: 'right'
         })
-        .fontSize(9)
-        .text(customerInfo.email, 280, 120, {
-            width: 270,
-            align: 'right'
-        });
 
     timein = new Date(infos.timeIn);
     timeout = new Date(infos.timeOut);
@@ -375,9 +365,9 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
                 159
             )
             .fontSize(9)
-            .text('TOTAL TIME : ', 70, 180)
+            .text('TOTAL TIME : ', 50, 180)
             .fontSize(14)
-            .text(msToTime(infos.totalTime), 170, 178);
+            .text(msToTime(infos.totalTime), 150, 178);
     } else {
         doc.fontSize(9)
             .text('TIME IN : ', 50, 140)
@@ -408,10 +398,13 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
                 159
             )
             .fontSize(9)
-            .text('TOTAL TIME : ', 70, 180)
+            .text('TOTAL TIME : ', 50, 180)
             .fontSize(14)
-            .text(msToTime(infos.totalTime), 170, 178);
+            .text(msToTime(infos.totalTime), 150, 178);
     }
+
+    doc.moveDown()
+        .text("SERVICE DETAILS :", 50, 220);
 
     // Dynamic tasks
     infos.tasks.forEach(function(task) {
@@ -421,14 +414,10 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
             doc.moveDown();
         }
 
-        buff_y = doc.y + 20;
+        buff_y = doc.y;
 
         // Infos
         doc.fontSize(10)
-            .text('QUANTITY : ', 300, buff_y)
-            .fontSize(14)
-            .text(task.quantity, 360, buff_y - 3)
-            .fontSize(10)
             .text('TASK TYPE : ', 50, buff_y)
             .fontSize(14)
             .text(task.taskType.slice(0, 15), 150, buff_y - 3)
@@ -439,9 +428,13 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
             .fontSize(14)
             .text(task.productBrand.slice(0, 15), 150, buff_y - 3)
             .fontSize(10)
-            .text('PRODUCT MODEL : ', 280, buff_y)
+            .text('PRODUCT MODEL : ', 240, buff_y)
             .fontSize(14)
-            .text(task.productModel.slice(0, 15), 380, buff_y - 3);
+            .text(task.productModel.slice(0, 15), 340, buff_y - 3)
+            .text('QUANTITY : ', 400, buff_y)
+            .fontSize(14)
+            .text(task.quantity, 480, buff_y - 3)
+            .fontSize(10);
 
         if (doc.y >= PAGE_HEIGHT - 100) {
             doc.addPage().x = (50).y = 50;
@@ -526,6 +519,23 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
         .moveTo(400, buff_y + 60)
         .lineTo(550, buff_y + 60)
         .stroke()
+
+        .fontSize(12)
+        .text(engineerInfo.lastName + ' ' + engineerInfo.firstName, 50, buff_y + 70)
+        .fontSize(9)
+        .text(engineerInfo.position, 50, buff_y + 85)
+        .fontSize(9)
+
+        .fontSize(12)
+        .text(customerInfo.lastName + ' ' + customerInfo.firstName, 280, buff_y + 70, {
+            width: 270,
+            align: 'right'
+        })
+        .fontSize(9)
+        .text(customerInfo.position + ' of ' + customerInfo.company, 280, buff_y + 85, {
+            width: 270,
+            align: 'right'
+        })
 
         .end();
 }

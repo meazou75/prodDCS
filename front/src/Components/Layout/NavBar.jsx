@@ -115,21 +115,6 @@ class NavBar extends React.Component {
                                     </button>
                                 </NavLink>
                                 <NavLink
-                                    to="/profile/report"
-                                    activeClassName="active"
-                                >
-                                    <button>
-                                        <i className="fas fa-user-circle" />
-                                        Profile
-                                    </button>
-                                </NavLink>
-                                <NavLink to="/report" activeClassName="active">
-                                    <button>
-                                        <i className="fas fa-file-alt" />
-                                        Report
-                                    </button>
-                                </NavLink>
-                                <NavLink
                                     to="/dashboard"
                                     activeClassName="active"
                                 >

@@ -9,23 +9,13 @@ class Accueil extends Component {
         return (
             <div className="dashboard-container">
                 <Row className="dashboard-row">
-                    <Col md={6} xs={12}>
+                    <Col md={12} xs={12}>
                         <a href="/engineer_list">
                             <button className="dashboard-item">
                                 <div className="dashboard-icon">
                                     <i className="fas fa-user-cog" />
                                 </div>{' '}
                                 Users List
-                            </button>
-                        </a>
-                    </Col>
-                    <Col md={6} xs={12}>
-                        <a href="/dashboard/report_list">
-                            <button className="dashboard-item">
-                                <div className="dashboard-icon">
-                                    <i className="fas fa-clipboard-list" />
-                                </div>
-                                Reports List
                             </button>
                         </a>
                     </Col>

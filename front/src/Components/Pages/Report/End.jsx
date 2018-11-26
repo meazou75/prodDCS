@@ -31,7 +31,7 @@ class End extends React.Component {
                             Download the report
                         </button>
                     </a>
-                    <a href="/dashboard">
+                    <a href="/profile/report">
                         <button
                             type="button"
                             className="btn btn-primary btn-lg"
