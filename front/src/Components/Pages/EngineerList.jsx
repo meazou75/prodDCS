@@ -53,7 +53,7 @@ class AddTaskModal extends React.Component {
                 ? this.props.user.position
                 : null,
             company: this.props.user.company ? this.props.user.company : null,
-            role: this.props.user.role ? this.props.user.role : null
+            role: this.props.user.role
         });
     }
 

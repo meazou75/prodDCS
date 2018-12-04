@@ -74,4 +74,8 @@ export default class AuthService {
     getRole() {
         return decode(this.getToken()).role;
     }
+
+    decodeToken() {
+        return decode(this.getToken());
+    }
 }

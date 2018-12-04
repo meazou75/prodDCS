@@ -259,13 +259,13 @@ function pdfGenPending(infos, customerInfo, engineerInfo) {
         .stroke()
 
         .fontSize(12)
-        .text(engineerInfo.lastName + ' ' + engineerInfo.firstName, 50, buff_y + 70)
+        .text(engineerInfo.firstName + ' ' + engineerInfo.lastName, 50, buff_y + 70)
         .fontSize(9)
         .text(engineerInfo.position, 50, buff_y + 85)
         .fontSize(9)
 
         .fontSize(12)
-        .text(customerInfo.lastName + ' ' + customerInfo.firstName, 280, buff_y + 70, {
+        .text(customerInfo.firstName + ' ' + customerInfo.lastName, 280, buff_y + 70, {
             width: 270,
             align: 'right'
         })
@@ -521,13 +521,13 @@ function pdfGenAccepted(infos, customerInfo, engineerInfo) {
         .stroke()
 
         .fontSize(12)
-        .text(engineerInfo.lastName + ' ' + engineerInfo.firstName, 50, buff_y + 70)
+        .text(engineerInfo.firstName + ' ' + engineerInfo.lastName, 50, buff_y + 70)
         .fontSize(9)
         .text(engineerInfo.position, 50, buff_y + 85)
         .fontSize(9)
 
         .fontSize(12)
-        .text(customerInfo.lastName + ' ' + customerInfo.firstName, 280, buff_y + 70, {
+        .text(customerInfo.firstName + ' ' + customerInfo.lastName, 280, buff_y + 70, {
             width: 270,
             align: 'right'
         })
